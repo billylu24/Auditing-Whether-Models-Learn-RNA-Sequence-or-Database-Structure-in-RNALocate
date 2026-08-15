@@ -1,0 +1,3 @@
+contrast	left_model	right_model	ap_difference_ci95_low	ap_difference_ci95_high	bootstrap_replicates	bootstrap_unit	ap_difference
+support_after_context	context_support	context_only	0.14748883215881625	0.16405921548115027	1000	all-sequence graph component	0.1559178519543425
+sequence_after_context_support	full	context_support	0.0006881170514909773	0.00103667506313328	1000	all-sequence graph component	0.0008582018649574419

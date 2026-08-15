@@ -1,0 +1,14 @@
+{
+  "status": "pass",
+  "analysis_status": "reviewer-requested post hoc sensitivity analysis",
+  "exclusion": "other_context_support == 0 removed from train, validation, and test",
+  "full_pairs": 300048,
+  "retained_pairs": 299056,
+  "excluded_pairs": 992,
+  "test_pairs": 45003,
+  "test_observed_pairs": 30899,
+  "test_prevalence": 0.6865986711996978,
+  "test_components": 2764,
+  "bootstrap_replicates": 1000,
+  "seed": 20260815
+}

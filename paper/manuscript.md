@@ -1,9 +1,5 @@
 # Auditing Whether Models Learn RNA Sequence or Database Structure in RNALocate
 
-**Yicheng "Billy" Lu (1); Xinyi Lu (2)**  
-(1) Computer Engineering student, University of California, Santa Barbara  
-(2) Student, Lynbrook High School
-
 ## Abstract
 
 RNA localization databases provide large training sets, but their coverage is uneven. Models may learn which genes and contexts are well documented rather than only sequence signals. We tested this possibility in RNALocate using 18,753 human genes and 16 cellular contexts, creating 300,048 gene-context pairs. We predicted whether each pair had a retained record, treating unrecorded pairs as unknown rather than biological negatives. Logistic-regression models used context, low-level RNA sequence features, and other-context support—the number of other contexts with a record for the same gene. Genes were separated by sequence-similarity components before training and testing. Context alone achieved held-out average precision (AP) of 0.8036, sequence alone 0.8234, and context plus support 0.9572. Adding sequence to context plus support increased AP by only 0.00087 (95% component-bootstrap confidence interval 0.00072–0.00105). In 200 negative controls, shuffling support among genes within each context and split reduced mean AP to 0.8108. The pattern appeared across the context panel and remained stable across three low-level sequence representations, although performance varied. In a separate annotation-recovery analysis, context was much stronger than 3-mer features overall, while sequence retained modest value within fixed contexts. Database structure can therefore create powerful predictive shortcuts. RNA localization benchmarks should report their observation process, split unit, and model inputs before interpreting high scores as transferable sequence biology.
@@ -48,15 +44,19 @@ The primary model family was logistic regression. We fit an intercept-only preva
 
 Average precision was the primary metric because the observed and unrecorded classes were imbalanced; AP should be interpreted relative to the positive prevalence{12}. The labels are also related to the positive-unlabeled setting, in which known positives and unlabelled examples do not form an ordinary positive-versus-negative dataset{13}. We also report area under the receiver-operating-characteristic curve (AUROC) and Brier score. Ninety-five percent percentile confidence intervals and paired AP differences used 1,000 bootstrap resamples of sequence components.
 
+For the within-context annotation-recovery analysis, an eligible context-label cell was defined as a non-nucleus cell with at least 10 positive and at least 10 negative held-out rows. Five cells met this rule. The threshold was applied before averaging AP across cells.
+
 ### Negative control and robustness analyses
 
 For the shuffled-support control, support values were randomly permuted among genes separately within every context and split. This preserved each context's support distribution, prevalence, and split membership while breaking the link between a gene and its actual cross-context coverage. Model selection and refitting were repeated for 200 fixed-seed permutations. The empirical one-sided probability was calculated as `(1 + number of shuffled AP values at least as large as the real AP) / 201`.
 
-We calculated record fraction and Wilson 95% intervals for support values 0–15. For each context, we reported prevalence, AP, AP minus prevalence, normalized AP lift, AUROC, and Brier score. Calibration was summarized in ten equal-frequency test bins. Sequence sensitivity compared composition plus length (6 features), 3-mers only (64 features), and the complete representation (70 features). These are deliberately simple sequence views and do not test every possible sequence model.
+We calculated record fraction and Wilson 95% intervals for support values 0-15. For each context, we reported prevalence, AP, AP minus prevalence, normalized AP lift, AUROC, and Brier score. Calibration was summarized in ten equal-frequency test bins. Sequence sensitivity compared composition plus length (6 features), 3-mers only (64 features), and the complete representation (70 features). These are deliberately simple sequence views and do not test every possible sequence model.
 
-### Ethics Statement
+Because support zero is a deterministic cohort-selection boundary, we specified a reviewer-requested post hoc sensitivity analysis before running it. Every pair with support zero was excluded from training, validation, and testing. Context, support, context-plus-support, and the full context-plus-support-plus-sequence model were then retuned and refit using the original split, model family, regularization grid, and 1,000 component-bootstrap replicates.
 
-This study used previously published, publicly accessible molecular datasets and involved no direct interaction with human participants, identifiable clinical information, or new animal experiments.
+### Ethics and reproducibility
+
+The study used previously published molecular database records and involved no direct interaction with human participants, identifiable clinical information, or new animal experiments. Analysis scripts, tests, the frozen analysis plan and sensitivity amendment, figure source tables, software versions, and file hashes are included in the project package. Redistribution of source-derived RNALocate records must follow the database terms.
 
 ## Results
 
@@ -85,7 +85,11 @@ The complete factorial comparison showed that context alone reached AP 0.8036 an
 | Support + sequence | 0.9071 (0.9015–0.9118) | 0.8541 | 0.1323 |
 | Context + support + sequence | 0.9580 (0.9550–0.9606) | 0.9158 | 0.1058 |
 
-Paired component bootstraps clarified the incremental information (Figure 2B). Adding sequence after context increased AP by 0.0787 (95% CI 0.0719–0.0863), whereas adding support after context increased AP by 0.1535 (0.1458–0.1616). Once context and support were included, adding sequence changed AP by only 0.00087 (0.00072–0.00105). Conversely, support still added 0.0757 (0.0695–0.0823) after context and sequence.
+Paired component bootstraps clarified the incremental information (Figure 2B). Adding sequence after context increased AP by 0.0787 (95% CI 0.0719-0.0863), whereas adding support after context increased AP by 0.1535 (0.1458-0.1616). Once context and support were included, adding sequence changed AP by only 0.00087 (0.00072-0.00105). Conversely, support still added 0.0757 (0.0695-0.0823) after context and sequence.
+
+### Excluding the support-zero boundary did not change the conclusion
+
+The support-zero exclusion removed 992 of 300,048 pairs across all splits, including 149 test pairs. The reduced test set contained 45,003 pairs with prevalence 0.6866. Context AP was 0.8014 (95% CI 0.7923-0.8115), support AP was 0.9006 (0.8959-0.9051), context-plus-support AP was 0.9573 (0.9544-0.9601), and full-model AP was 0.9582 (0.9552-0.9610). Context plus support remained 0.1559 AP above context (0.1475-0.1641), whereas sequence added 0.00086 after context plus support (0.00069-0.00104). Thus, the structural result did not depend on the deterministic support-zero pairs. This post hoc sensitivity addresses that boundary but not other forms of database selection.
 
 ![Figure 2](figures/figure_2_factorial_and_permutation.png)
 
@@ -109,11 +113,11 @@ The sequence-sensitivity analysis changed sequence-only AP from 0.7870 for compo
 
 The separate annotation-recovery task predicted four recorded localization labels among already observed gene-context rows. Label-frequency AP was 0.2930, 3-mer sequence AP was 0.3054, context AP was 0.7198, and context plus 3-mers reached 0.7567 (Figure 4A). Results varied sharply by localization label (Figure 4B), so the overall average should not be treated as uniform performance.
 
-Within a fixed context, a context-only model cannot rank genes. Across five eligible non-nucleus context-label cells, mean within-context AP was 0.4523 for the context baseline, 0.5281 for 3-mers, and 0.5352 for context plus 3-mers (Figure 4C). This shows that the tested sequence features retained modest ranking information even though context dominated the global average. Context dominance was stable across the primary sequence graph and three MMseqs2 clustering stress tests (Figure 4D).
+Within a fixed context, a context-only model cannot rank genes. Across the five non-nucleus context-label cells with at least 10 positive and 10 negative held-out rows, mean within-context AP was 0.4523 for the context baseline, 0.5281 for 3-mers, and 0.5352 for context plus 3-mers (Figure 4C). This shows that the tested sequence features retained modest ranking information even though context dominated the global average. Context dominance was stable across the primary sequence graph and three MMseqs2 clustering stress tests (Figure 4D).
 
 ![Figure 4](figures/figure_4_annotation_recovery_consequence.png)
 
-**Figure 4 | Database structure has a clear consequence for localization annotation recovery.** (A) Macro AP for recovering four recorded localization labels among already observed gene-context rows. (B) Per-label AP. (C) Mean AP across five eligible non-nucleus context-label cells. (D) Context and low-level-sequence macro AP under the primary sequence graph and three clustering stress tests. These analyses concern database annotations and do not validate localization for unrecorded pairs.
+**Figure 4 | Database structure has a clear consequence for localization annotation recovery.** (A) Macro AP for recovering four recorded localization labels among already observed gene-context rows. (B) Per-label AP. (C) Mean AP across the five non-nucleus context-label cells with at least 10 positive and 10 negative held-out rows. (D) Context and low-level-sequence macro AP under the primary sequence graph and three clustering stress tests. These analyses concern database annotations and do not validate localization for unrecorded pairs.
 
 ## Discussion
 
@@ -135,7 +139,7 @@ Researchers can reduce misleading interpretations by reporting four items. First
 
 ### Limitations
 
-The panel was selected after retaining genes and contexts with sufficient records, so its prevalence is not the prevalence of all human mRNA localization. Support zero is structurally constrained by gene eligibility. The selected representative transcript may not match the localized isoform. The primary split controls detected sequence links at one identity and coverage threshold but cannot rule out every distant relationship. Logistic regression and three low-level sequence views do not represent all possible RNA models; a richer representation could discover additional biological signal. Context-specific estimates came from one selected database panel, and the poorest context showed that the shortcut is not equally strong everywhere. Bootstrap intervals condition on the fixed dataset, preprocessing, model family, and split. Finally, no experiment here identifies the causal origin of the observed coverage structure.
+The panel was selected after retaining genes and contexts with sufficient records, so its prevalence is not the prevalence of all human mRNA localization. Support zero is structurally constrained by gene eligibility; excluding it in a post hoc sensitivity analysis did not materially change the results. The selected representative transcript may not match the localized isoform. The primary split controls detected sequence links at one identity and coverage threshold but cannot rule out every distant relationship. Logistic regression and three low-level sequence views do not represent all possible RNA models; a richer representation could discover additional biological signal. Context-specific estimates came from one selected database panel, and the poorest context showed that the shortcut is not equally strong everywhere. Bootstrap intervals condition on the fixed dataset, preprocessing, model family, and split. Finally, no experiment here identifies the causal origin of the observed coverage structure.
 
 ### Future work and conclusion
 
@@ -145,7 +149,7 @@ In conclusion, context and same-gene database coverage can act as powerful short
 
 ### Data and code availability
 
-Code, analysis scripts, paper-facing source tables, figures, and the concise high-school manuscript are available at https://github.com/billylu24/Auditing-Whether-Models-Learn-RNA-Sequence-or-Database-Structure-in-RNALocate. RNALocate v3.0 is available from its official database{2}.
+Code, analysis scripts, aggregate results, paper-facing source tables, and figures are available at https://github.com/billylu24/Auditing-Whether-Models-Learn-RNA-Sequence-or-Database-Structure-in-RNALocate. RNALocate v3.0 is available from its official database{2}.
 
 ## References
 

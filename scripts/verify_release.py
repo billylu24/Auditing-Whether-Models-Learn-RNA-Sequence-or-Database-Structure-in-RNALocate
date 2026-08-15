@@ -95,6 +95,18 @@ def verify_secondary_analyses() -> None:
     require(audit["status"] == "pass", "Analysis audit did not pass")
     require(audit["support_zero_is_all_observed"] is True, "Support-zero boundary audit failed")
 
+    support_zero = pd.read_csv(RESULTS / "support_zero_exclusion_metrics.tsv", sep="\t").set_index("model")
+    require(set(support_zero.index) == {"context_only", "support_only", "context_support", "full"}, "Support-zero model set is incomplete")
+    close(float(support_zero.loc["context_only", "average_precision"]), 0.8014217430297013)
+    close(float(support_zero.loc["support_only", "average_precision"]), 0.9005935457628997)
+    close(float(support_zero.loc["context_support", "average_precision"]), 0.9573395950016954)
+    close(float(support_zero.loc["full", "average_precision"]), 0.9581977967677284)
+    require((support_zero["test_pairs"] == 45003).all(), "Support-zero sensitivity test size changed")
+    support_zero_audit = json.loads((RESULTS / "support_zero_exclusion_audit.json").read_text(encoding="utf-8"))
+    require(support_zero_audit["status"] == "pass", "Support-zero sensitivity audit did not pass")
+    require(support_zero_audit["excluded_pairs"] == 992, "Unexpected support-zero exclusion count")
+    require(support_zero_audit["retained_pairs"] + support_zero_audit["excluded_pairs"] == support_zero_audit["full_pairs"], "Support-zero pair accounting failed")
+
 
 def verify_figures() -> None:
     manifest = json.loads((PAPER / "figures/figure_manifest.json").read_text(encoding="utf-8"))
@@ -123,6 +135,8 @@ def verify_all() -> None:
     verify_metrics()
     verify_secondary_analyses()
     verify_figures()
+    for relative in ["paper/preprint.pdf", "paper/preprint.docx", "paper/supporting_information.pdf", "paper/manuscript.md"]:
+        require((ROOT / relative).exists() and (ROOT / relative).stat().st_size > 1000, f"Missing paper artifact: {relative}")
 
 
 def main() -> None:

@@ -1,0 +1,4 @@
+split	full_pairs	retained_pairs	excluded_support_zero_pairs
+test	45152	45003	149
+train	210912	210210	702
+validation	43984	43843	141
