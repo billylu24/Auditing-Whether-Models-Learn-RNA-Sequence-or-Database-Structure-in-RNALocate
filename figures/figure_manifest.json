@@ -1,0 +1,201 @@
+{
+  "status": "general publication figures; target-journal compliance pending",
+  "generated_by": "scripts/make_figures.py",
+  "software": {
+    "python": "3.11.5",
+    "matplotlib": "3.11.1",
+    "pandas": "3.0.5",
+    "numpy": "2.3.2"
+  },
+  "background": "opaque white",
+  "raster_dpi_requested": 300,
+  "svg_text": "editable/searchable text; fonts are not embedded",
+  "source_groups": {
+    "figure_1": [
+      "source_data/figure_1_context_coverage.tsv",
+      "source_data/figure_1_support_gradient.tsv",
+      "source_data/figure_1_support_by_context.tsv"
+    ],
+    "figure_2": [
+      "source_data/figure_2_factorial_metrics.tsv",
+      "source_data/figure_2_incremental_effects.tsv",
+      "source_data/figure_2_shuffled_support.tsv"
+    ],
+    "figure_3": [
+      "source_data/figure_3_context_metrics.tsv",
+      "source_data/figure_3_calibration.tsv",
+      "source_data/figure_3_sequence_sensitivity.tsv"
+    ],
+    "figure_4": [
+      "source_data/figure_4_global_annotation_recovery.tsv",
+      "source_data/figure_4_per_label_annotation_recovery.tsv",
+      "source_data/figure_4_within_context.tsv",
+      "source_data/figure_4_split_sensitivity.tsv"
+    ]
+  },
+  "files": [
+    {
+      "file": "figures/figure_1_database_coverage.svg",
+      "format": "svg",
+      "sha256": "72a18f453f465fc23708ed62621c1350a950fbec7a7c3263c7fbfb87d68d9662",
+      "bytes": 95494,
+      "source_tables": [
+        "source_data/figure_1_context_coverage.tsv",
+        "source_data/figure_1_support_gradient.tsv",
+        "source_data/figure_1_support_by_context.tsv"
+      ]
+    },
+    {
+      "file": "figures/figure_1_database_coverage.pdf",
+      "format": "pdf",
+      "sha256": "ccab85c2dcb1e50e801e3ccabd78731594d16c8a184ec0084f836103d21d2fc9",
+      "bytes": 85568,
+      "source_tables": [
+        "source_data/figure_1_context_coverage.tsv",
+        "source_data/figure_1_support_gradient.tsv",
+        "source_data/figure_1_support_by_context.tsv"
+      ]
+    },
+    {
+      "file": "figures/figure_1_database_coverage.png",
+      "format": "png",
+      "sha256": "4d979f92e47199446e5f7de8ea6dda8a61a28896a1b79bf964f4acab2726b8ac",
+      "bytes": 268583,
+      "source_tables": [
+        "source_data/figure_1_context_coverage.tsv",
+        "source_data/figure_1_support_gradient.tsv",
+        "source_data/figure_1_support_by_context.tsv"
+      ],
+      "pixel_width": 2130,
+      "pixel_height": 2100,
+      "mode": "RGB",
+      "dpi": [
+        299.9994,
+        299.9994
+      ]
+    },
+    {
+      "file": "figures/figure_2_factorial_and_permutation.svg",
+      "format": "svg",
+      "sha256": "2360ddf38c8593dd1fe04c142e48a71b0d3ba80ed82815f87591e411590a3c60",
+      "bytes": 68842,
+      "source_tables": [
+        "source_data/figure_2_factorial_metrics.tsv",
+        "source_data/figure_2_incremental_effects.tsv",
+        "source_data/figure_2_shuffled_support.tsv"
+      ]
+    },
+    {
+      "file": "figures/figure_2_factorial_and_permutation.pdf",
+      "format": "pdf",
+      "sha256": "b14a56b04f52544b600c5c8d3910d7960bde01db41dcd14c10d1b8b22e76f82c",
+      "bytes": 30868,
+      "source_tables": [
+        "source_data/figure_2_factorial_metrics.tsv",
+        "source_data/figure_2_incremental_effects.tsv",
+        "source_data/figure_2_shuffled_support.tsv"
+      ]
+    },
+    {
+      "file": "figures/figure_2_factorial_and_permutation.png",
+      "format": "png",
+      "sha256": "689e9d482741757d89a2d0ae14be92eb03fea021256bd60f6d66dbfb1f898724",
+      "bytes": 206155,
+      "source_tables": [
+        "source_data/figure_2_factorial_metrics.tsv",
+        "source_data/figure_2_incremental_effects.tsv",
+        "source_data/figure_2_shuffled_support.tsv"
+      ],
+      "pixel_width": 2130,
+      "pixel_height": 2160,
+      "mode": "RGB",
+      "dpi": [
+        299.9994,
+        299.9994
+      ]
+    },
+    {
+      "file": "figures/figure_3_robustness_and_calibration.svg",
+      "format": "svg",
+      "sha256": "3eb2285516c5e934451967400e7e628f947d8956d4f474b6cd8c520b33b6f625",
+      "bytes": 77548,
+      "source_tables": [
+        "source_data/figure_3_context_metrics.tsv",
+        "source_data/figure_3_calibration.tsv",
+        "source_data/figure_3_sequence_sensitivity.tsv"
+      ]
+    },
+    {
+      "file": "figures/figure_3_robustness_and_calibration.pdf",
+      "format": "pdf",
+      "sha256": "dbabb60266ee0e535ff00ee35709251c46fa25cfb015b5259a2704862fa1623c",
+      "bytes": 31379,
+      "source_tables": [
+        "source_data/figure_3_context_metrics.tsv",
+        "source_data/figure_3_calibration.tsv",
+        "source_data/figure_3_sequence_sensitivity.tsv"
+      ]
+    },
+    {
+      "file": "figures/figure_3_robustness_and_calibration.png",
+      "format": "png",
+      "sha256": "a05a9fee133b28b86e74d749474991ee3b4d8106c3c2693f9f722f4cc77237f1",
+      "bytes": 322626,
+      "source_tables": [
+        "source_data/figure_3_context_metrics.tsv",
+        "source_data/figure_3_calibration.tsv",
+        "source_data/figure_3_sequence_sensitivity.tsv"
+      ],
+      "pixel_width": 2130,
+      "pixel_height": 2190,
+      "mode": "RGB",
+      "dpi": [
+        299.9994,
+        299.9994
+      ]
+    },
+    {
+      "file": "figures/figure_4_annotation_recovery_consequence.svg",
+      "format": "svg",
+      "sha256": "d8d4eaebf55ba28358cae508d4f9c8a9c4fb1dd458d1890b6383b298a3b283b3",
+      "bytes": 42545,
+      "source_tables": [
+        "source_data/figure_4_global_annotation_recovery.tsv",
+        "source_data/figure_4_per_label_annotation_recovery.tsv",
+        "source_data/figure_4_within_context.tsv",
+        "source_data/figure_4_split_sensitivity.tsv"
+      ]
+    },
+    {
+      "file": "figures/figure_4_annotation_recovery_consequence.pdf",
+      "format": "pdf",
+      "sha256": "99df5623a0d75ccff8bec767098d4c75dcaca1ef0bc3cb714e0d01e5713b88c5",
+      "bytes": 25823,
+      "source_tables": [
+        "source_data/figure_4_global_annotation_recovery.tsv",
+        "source_data/figure_4_per_label_annotation_recovery.tsv",
+        "source_data/figure_4_within_context.tsv",
+        "source_data/figure_4_split_sensitivity.tsv"
+      ]
+    },
+    {
+      "file": "figures/figure_4_annotation_recovery_consequence.png",
+      "format": "png",
+      "sha256": "a826b398fa79453ff84888feb4add7d568f9ac2f64407fc2404136c02142e9bc",
+      "bytes": 227391,
+      "source_tables": [
+        "source_data/figure_4_global_annotation_recovery.tsv",
+        "source_data/figure_4_per_label_annotation_recovery.tsv",
+        "source_data/figure_4_within_context.tsv",
+        "source_data/figure_4_split_sensitivity.tsv"
+      ],
+      "pixel_width": 2130,
+      "pixel_height": 2175,
+      "mode": "RGB",
+      "dpi": [
+        299.9994,
+        299.9994
+      ]
+    }
+  ]
+}

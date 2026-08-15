@@ -1,0 +1,29 @@
+{
+  "status": "pass",
+  "analysis_scope": "RNALocate record availability and context-shortcut audit",
+  "biological_negative_interpretation": false,
+  "grid_rows": 300048,
+  "genes": 18753,
+  "contexts": 16,
+  "observed_pairs": 208181,
+  "unobserved_pairs": 91867,
+  "test_rows": 45152,
+  "test_components": 2764,
+  "factorial_models": [
+    "prevalence",
+    "context_only",
+    "support_only",
+    "sequence_only",
+    "context_sequence",
+    "context_support",
+    "support_sequence",
+    "full"
+  ],
+  "bootstrap_replicates": 1000,
+  "permutation_replicates": 200,
+  "permutation_empirical_p_upper_tail": 0.004975124378109453,
+  "support_zero_is_all_observed": true,
+  "support_zero_explanation": "Eligible genes have at least one retained record; zero support in all other contexts therefore implies a record in the candidate context.",
+  "runtime_seconds": 135.26847579999594,
+  "seed": 20260814
+}

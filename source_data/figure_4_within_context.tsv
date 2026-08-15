@@ -1,0 +1,4 @@
+model	eligible_nonnucleus_context_label_cells	mean_within_context_ap	ci95_low	ci95_high	mean_ap_minus_within_context_prevalence	bootstrap_replicates	bootstrap_unit
+sequence_3mer	5	0.528101126303808	0.5139462460103031	0.5477350931132169	0.0757637323437899	2000	all-sequence self-search graph component
+context_only	5	0.4523373939600181	0.4457455955465736	0.4592744941180482	0.0	2000	all-sequence self-search graph component
+sequence_3mer_plus_context	5	0.5352487016573562	0.521576274513607	0.5538472694173973	0.082911307697338	2000	all-sequence self-search graph component
