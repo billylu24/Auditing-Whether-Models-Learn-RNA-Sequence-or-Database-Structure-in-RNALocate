@@ -52,7 +52,7 @@ For the shuffled-support control, support values were randomly permuted among ge
 
 We calculated record fraction and Wilson 95% intervals for support values 0-15. For each context, we reported prevalence, AP, AP minus prevalence, normalized AP lift, AUROC, and Brier score. Calibration was summarized in ten equal-frequency test bins. Sequence sensitivity compared composition plus length (6 features), 3-mers only (64 features), and the complete representation (70 features). These are deliberately simple sequence views and do not test every possible sequence model.
 
-Because support zero is a deterministic cohort-selection boundary, we specified a reviewer-requested post hoc sensitivity analysis before running it. Every pair with support zero was excluded from training, validation, and testing. Context, support, context-plus-support, and the full context-plus-support-plus-sequence model were then retuned and refit using the original split, model family, regularization grid, and 1,000 component-bootstrap replicates.
+In response to external feedback, we specified a post hoc sensitivity analysis before running it because support zero is a deterministic cohort-selection boundary. Every pair with support zero was excluded from training, validation, and testing. Context, support, context-plus-support, and the full context-plus-support-plus-sequence model were then retuned and refit using the original split, model family, regularization grid, and 1,000 component-bootstrap replicates.
 
 ### Ethics and reproducibility
 

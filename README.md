@@ -32,7 +32,7 @@ We studied 18,753 genes across 16 cellular contexts, creating 300,048 gene-conte
 
 In 200 negative controls, support values were shuffled among genes within each context and split. Mean average precision fell to **0.8108**, showing that the large gain depended on linking each gene to its own cross-context database coverage.
 
-Because support = 0 is a deterministic cohort-selection boundary, we removed all such pairs from training, validation, and test and refit the four key models. On the reduced 45,003-pair test set, AP was **0.8014** for context, **0.9006** for support, **0.9573** for context + support, and **0.9582** for context + support + sequence. The central conclusion therefore did not depend on the support-zero pairs. This was a reviewer-requested post hoc sensitivity analysis.
+Because support = 0 is a deterministic cohort-selection boundary, we removed all such pairs from training, validation, and test and refit the four key models. On the reduced 45,003-pair test set, AP was **0.8014** for context, **0.9006** for support, **0.9573** for context + support, and **0.9582** for context + support + sequence. The central conclusion therefore did not depend on the support-zero pairs. This post hoc sensitivity analysis was specified before it was run in response to external feedback.
 
 ## The four figures
 

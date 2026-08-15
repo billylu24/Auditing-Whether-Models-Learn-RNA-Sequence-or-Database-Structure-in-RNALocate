@@ -1,6 +1,6 @@
 """Run the support-zero exclusion sensitivity analysis.
 
-This is a reviewer-requested post hoc sensitivity analysis. It removes every
+This post hoc sensitivity analysis was developed in response to external feedback. It removes every
 gene-context pair with other-context support equal to zero from training,
 validation, and test sets, then refits the four requested models.
 """
@@ -163,7 +163,7 @@ def main() -> None:
 
     report = {
         "status": "pass",
-        "analysis_status": "reviewer-requested post hoc sensitivity analysis",
+        "analysis_status": "post hoc sensitivity analysis developed in response to external feedback",
         "exclusion": "other_context_support == 0 removed from train, validation, and test",
         "full_pairs": int(len(full_grid)),
         "retained_pairs": int(len(reduced)),

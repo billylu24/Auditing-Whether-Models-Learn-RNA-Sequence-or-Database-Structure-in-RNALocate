@@ -1,6 +1,6 @@
 {
   "status": "pass",
-  "analysis_status": "reviewer-requested post hoc sensitivity analysis",
+  "analysis_status": "post hoc sensitivity analysis developed in response to external feedback",
   "exclusion": "other_context_support == 0 removed from train, validation, and test",
   "full_pairs": 300048,
   "retained_pairs": 299056,

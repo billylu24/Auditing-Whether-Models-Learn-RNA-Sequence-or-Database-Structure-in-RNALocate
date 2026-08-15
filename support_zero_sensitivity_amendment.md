@@ -2,7 +2,7 @@
 
 **Specified:** 2026-08-15, before running this sensitivity analysis
 
-**Status:** reviewer-requested post hoc sensitivity analysis
+**Status:** post hoc sensitivity analysis developed in response to external feedback
 **Primary analysis remains unchanged.**
 
 ## Rationale
